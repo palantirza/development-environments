@@ -67,4 +67,4 @@
 * DotNet3.5
 
 ###### Windows 10
-START http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/shederman/development-environments/master/windows-10/boxstarter
+START http://boxstarter.org/package/nr/url?https://raw.githubusercontent.com/palantirza/development-environments/master/windows-10/boxstarter
