@@ -1,0 +1,101 @@
+# Configure Windows
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
+
+Update-ExecutionPolicy Unrestricted
+
+cinst -y Microsoft-Hyper-V-All -source windowsFeatures
+
+# Packages
+cinst -y cmder -pre
+cinst -y Gow
+
+## Node, npm
+cinst -y nodejs.install
+
+## Git
+cinst -y git.install
+cinst -y poshgit
+cinst -y git-credential-winstore
+cinst -y github
+
+## Node, npm
+cinst -y nodejs.install
+npm install -g npm-windows-upgrade
+
+## Editors
+cinst -y SublimeText3
+cinst -y SublimeText3.PackageControl
+cinst -y sublimetext3-contextmenu
+cinst -y SublimeText3.PowershellAlias
+
+cinst -y Atom
+cinst -y visualstudiocode
+
+## Visual Studio 2015
+cinst -y visualstudio2015enterprise -packageParameters "--Features SQL"
+
+if (Test-PendingReboot) { Invoke-Reboot }
+
+## SQL Server Express
+cinst -y mssqlserver2012express
+
+if (Test-PendingReboot) { Invoke-Reboot }
+
+## Install IIS
+START /WAIT DISM /Online /Enable-Feature /FeatureName:IIS-ApplicationDevelopment /FeatureName:IIS-ASP /FeatureName:IIS-ASPNET /FeatureName:IIS-BasicAuthentication /FeatureName:IIS-CGI /FeatureName:IIS-ClientCertificateMappingAuthentication /FeatureName:IIS-CommonHttpFeatures /FeatureName:IIS-CustomLogging /FeatureName:IIS-DefaultDocument /FeatureName:IIS-DigestAuthentication /FeatureName:IIS-DirectoryBrowsing /FeatureName:IIS-FTPExtensibility /FeatureName:IIS-FTPServer /FeatureName:IIS-FTPSvc /FeatureName:IIS-HealthAndDiagnostics /FeatureName:IIS-HostableWebCore /FeatureName:IIS-HttpCompressionDynamic /FeatureName:IIS-HttpCompressionStatic /FeatureName:IIS-HttpErrors /FeatureName:IIS-HttpLogging /FeatureName:IIS-HttpRedirect /FeatureName:IIS-HttpTracing /FeatureName:IIS-IIS6ManagementCompatibility /FeatureName:IIS-IISCertificateMappingAuthentication /FeatureName:IIS-IPSecurity /FeatureName:IIS-ISAPIExtensions /FeatureName:IIS-ISAPIFilter /FeatureName:IIS-LegacyScripts /FeatureName:IIS-LegacySnapIn /FeatureName:IIS-LoggingLibraries /FeatureName:IIS-ManagementConsole /FeatureName:IIS-ManagementScriptingTools /FeatureName:IIS-ManagementService /FeatureName:IIS-Metabase /FeatureName:IIS-NetFxExtensibility /FeatureName:IIS-ODBCLogging /FeatureName:IIS-Performance /FeatureName:IIS-RequestFiltering /FeatureName:IIS-RequestMonitor /FeatureName:IIS-Security /FeatureName:IIS-ServerSideIncludes /FeatureName:IIS-StaticContent /FeatureName:IIS-URLAuthorization /FeatureName:IIS-WebDAV /FeatureName:IIS-WebServer /FeatureName:IIS-WebServerManagementTools /FeatureName:IIS-WebServerRole /FeatureName:IIS-WindowsAuthentication /FeatureName:IIS-WMICompatibility /FeatureName:WAS-ConfigurationAPI /FeatureName:WAS-NetFxEnvironment /FeatureName:WAS-ProcessModel /FeatureName:WAS-WindowsActivationService
+
+## RavenDB
+choco install ravendb -y
+
+## System Tools
+cinst -y sysinternals
+cinst -y fiddler4
+cinst -y windbg
+cinst -y wireshark
+
+## Developer Utilities
+cinst -y linqpad4
+cinst -y resharper
+cinst -y paint.net
+cinst -y diffmerge
+cinst -y lockhunter
+cinst -y stylecop
+cinst -y papercut
+
+## Ruby, Go, Python
+cinst -y ruby
+cinst -y ruby.devkit
+
+cinst -y golang
+
+cinst -y python
+cinst -y pip
+cinst -y easy.install
+
+## DevOps Stuff
+cinst -y virtualbox
+cinst -y virtualbox.extensionpack
+cinst -y vagrant
+
+# Docker is currently not included, since it doesn't support Windows 10 at this time.
+# To install, manually download and run https://github.com/docker/toolbox/releases/download/v1.8.1a/DockerToolbox-1.8.1a-windows-10-test.exe
+
+if (Test-PendingReboot) { Invoke-Reboot }
+
+## Basics
+cinst -y vlc
+cinst -y GoogleChrome
+cinst -y 7zip.install
+cinst -y adobereader
+cinst -y DotNet3.5
+# cinst -y DotNet4.0 -- not needed on windows 8
+# cinst -y DotNet4.5 -- not needed on windows 10
+# cinst -y PowerShell -- not needed on windows 10
+if (Test-PendingReboot) { Invoke-Reboot }
+
+# Pinning Things
+Install-ChocolateyPinnedTaskBarItem "$env:programfiles\Google\Chrome\Application\chrome.exe"
+Install-ChocolateyFileAssociation ".txt" "$env:programfiles\Sublime Text 3\sublime_text.exe"
+
+# Let's get Updates, too
+Install-WindowsUpdate -acceptEula
