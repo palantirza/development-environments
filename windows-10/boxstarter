@@ -47,6 +47,15 @@ START /WAIT DISM /Online /Enable-Feature /FeatureName:IIS-ApplicationDevelopment
 ## RavenDB
 choco install ravendb -y
 
+## Redis
+cinst -y redis
+
+## Redis Desktop Manager
+cinst -y redis-desktop-manager
+
+## Remote Desktop Manager
+cinst -y rdcman
+
 ## System Tools
 cinst -y sysinternals
 cinst -y fiddler4
