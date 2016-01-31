@@ -31,6 +31,13 @@
 ###### RavenDB
 * ravendb
 
+##### Redis 
+* redis
+* redis desktop manager
+
+##### Remote Desktop
+* remote desktop manager
+
 ###### System Tools
 * sysinternals - [System Tools for Windows](https://technet.microsoft.com/en-us/sysinternals/bb545021.aspx)
 * fiddler4 - [Debugging web proxy](http://www.telerik.com/fiddler)
